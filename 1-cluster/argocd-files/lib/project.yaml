@@ -7,7 +7,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   sourceRepos:
-  - https://github.com/nikita-akuity/*
+  - https://github.com/akuity/*
   destinations:
   - namespace: guestbook
     server: https://kubernetes.default.svc
