@@ -67,6 +67,7 @@ resource "akp_instance" "example" {
   kustomize = {
     build_options = "--enable-helm"
   }
+  default_policy                 = "role:readonly"
   declarative_management_enabled = true
   admin_enabled                  = false
   allow_anonymous                = true
