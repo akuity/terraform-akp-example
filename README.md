@@ -56,6 +56,26 @@ Total number of applications should be 9 as we have 3 clusters, each one with 3 
 Contains TF files to create a new Argo CD instance, 3 physical clusters and any number of virtual clusters using namespace-scoped Akuity agent installations.
 Virtual clusters are separated by environment and cloud, and named `gcp-dev-01`, `azure-stage-03` etc.
 
+```hcl
+resource "akp_instance" "example" {
+  name        = "tf-100-clusters-example"
+  version     = "v2.6.0"
+  description = "An example of terrafrom automation for managing Akuity Platform resources"
+  web_terminal = {
+    enabled = true
+  }
+  kustomize = {
+    build_options = "--enable-helm"
+  }
+  declarative_management_enabled = true
+  admin_enabled                  = false
+  allow_anonymous                = true
+  subdomain                      = "100-clusters-example"
+}
+```
+
+Argo CD Web UI is available on https://100-clusters-example.cd.akuity.cloud
+
 -------------
 
 All examples are tested with akp provider version `0.3.1` 

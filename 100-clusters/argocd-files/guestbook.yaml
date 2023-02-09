@@ -24,7 +24,7 @@ spec:
       finalizers:
         - resources-finalizer.argocd.argoproj.io
     spec:
-      project: '{{metadata.labels.env}}'
+      project: '100-clusters-{{metadata.labels.env}}'
       source:
         repoURL: https://github.com/akuity/guestbook-delivery.git
         targetRevision: HEAD

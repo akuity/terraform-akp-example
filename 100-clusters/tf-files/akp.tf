@@ -73,6 +73,9 @@ resource "akp_instance" "example" {
     build_options = "--enable-helm"
   }
   declarative_management_enabled = true
+  admin_enabled                  = false
+  allow_anonymous                = true
+  subdomain                      = "100-clusters-example"
 }
 
 // All Azure clusters
