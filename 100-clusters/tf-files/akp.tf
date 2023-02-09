@@ -1,19 +1,19 @@
 locals {
   example_layout = {
     gcp = {
-      dev   = 0
-      stage = 0
-      prod  = 0
+      dev   = 1
+      stage = 1
+      prod  = 1
     }
     aws = {
-      dev   = 0
-      stage = 0
-      prod  = 0
+      dev   = 1
+      stage = 1
+      prod  = 1
     }
     azure = {
-      dev   = 0
-      stage = 0
-      prod  = 0
+      dev   = 1
+      stage = 1
+      prod  = 1
     }
   }
   // generate cluster names like `dev-gcp-01`

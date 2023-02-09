@@ -58,4 +58,4 @@ Virtual clusters are separated by environment and cloud, and named `gcp-dev-01`,
 
 -------------
 
-All examples are tested with akp provider version `0.3.0` 
+All examples are tested with akp provider version `0.3.1` 
