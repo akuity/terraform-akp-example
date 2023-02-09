@@ -64,20 +64,15 @@ provider akp {
 // Argo CD Instance
 resource "akp_instance" "example" {
   name        = "tf-100-clusters-example"
-  version     = "v2.5.7"
+  version     = "v2.6.0"
   description = "An example of terrafrom automation for managing Akuity Platform resources"
-  config = {
-    web_terminal = {
-      enabled = true
-    }
-    kustomize = {
-      enabled = true
-      build_options = "--enable-helm"
-    }
+  web_terminal = {
+    enabled = true
   }
-  spec = {
-    declarative_management = true
+  kustomize = {
+    build_options = "--enable-helm"
   }
+  declarative_management_enabled = true
 }
 
 // All Azure clusters

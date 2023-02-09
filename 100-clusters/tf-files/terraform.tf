@@ -14,7 +14,7 @@ terraform {
     }
     akp = {
       source = "akuity/akp"
-      version = "~> 0.3"
+      version = "0.3.1"
     }
   }
 }
