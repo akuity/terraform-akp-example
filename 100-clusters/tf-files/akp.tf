@@ -6,14 +6,14 @@ locals {
       prod  = 1
     }
     aws = {
-      dev   = 1
-      stage = 1
-      prod  = 1
+      dev   = 0
+      stage = 0
+      prod  = 0
     }
     azure = {
-      dev   = 1
-      stage = 1
-      prod  = 1
+      dev   = 0
+      stage = 0
+      prod  = 0
     }
   }
   // generate cluster names like `dev-gcp-01`
@@ -80,51 +80,51 @@ resource "akp_instance" "example" {
 }
 
 // All Azure clusters
-resource "akp_cluster" "azure_clusters" {
-  for_each         = local.azure_clusters
-  name             = each.key
-  namespace        = each.value.namespace
-  namespace_scoped = true
-  size             = "small"
-  instance_id      = akp_instance.example.id
-  labels           = {
-    env = each.value.env
-    cloud = "azure"
-  }
-  annotations      = {
-    managed-namespace = each.value.namespace
-  }
-  kube_config      = {
-    host                   = azurerm_kubernetes_cluster.example.kube_config.0.host
-    username               = azurerm_kubernetes_cluster.example.kube_config.0.username
-    password               = azurerm_kubernetes_cluster.example.kube_config.0.password
-    client_certificate     = base64decode(azurerm_kubernetes_cluster.example.kube_config.0.client_certificate)
-    client_key             = base64decode(azurerm_kubernetes_cluster.example.kube_config.0.client_key)
-    cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.example.kube_config.0.cluster_ca_certificate)
-  }
-}
+# resource "akp_cluster" "azure_clusters" {
+#   for_each         = local.azure_clusters
+#   name             = each.key
+#   namespace        = each.value.namespace
+#   namespace_scoped = true
+#   size             = "small"
+#   instance_id      = akp_instance.example.id
+#   labels           = {
+#     env = each.value.env
+#     cloud = "azure"
+#   }
+#   annotations      = {
+#     managed-namespace = each.value.namespace
+#   }
+#   kube_config      = {
+#     host                   = azurerm_kubernetes_cluster.example.kube_config.0.host
+#     username               = azurerm_kubernetes_cluster.example.kube_config.0.username
+#     password               = azurerm_kubernetes_cluster.example.kube_config.0.password
+#     client_certificate     = base64decode(azurerm_kubernetes_cluster.example.kube_config.0.client_certificate)
+#     client_key             = base64decode(azurerm_kubernetes_cluster.example.kube_config.0.client_key)
+#     cluster_ca_certificate = base64decode(azurerm_kubernetes_cluster.example.kube_config.0.cluster_ca_certificate)
+#   }
+# }
 
 // All AWS clusters
-resource "akp_cluster" "aws_clusters" {
-  for_each         = local.aws_clusters
-  name             = each.key
-  namespace        = each.value.namespace
-  namespace_scoped = true
-  size             = "small"
-  instance_id      = akp_instance.example.id
-  labels           = {
-    env = each.value.env
-    cloud = "aws"
-  }
-  annotations      = {
-    managed-namespace = each.value.namespace
-  }
-  kube_config      = {
-    host                   = module.eks.cluster_endpoint
-    token                  = data.aws_eks_cluster_auth.default.token
-    cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
-  }
-}
+# resource "akp_cluster" "aws_clusters" {
+#   for_each         = local.aws_clusters
+#   name             = each.key
+#   namespace        = each.value.namespace
+#   namespace_scoped = true
+#   size             = "small"
+#   instance_id      = akp_instance.example.id
+#   labels           = {
+#     env = each.value.env
+#     cloud = "aws"
+#   }
+#   annotations      = {
+#     managed-namespace = each.value.namespace
+#   }
+#   kube_config      = {
+#     host                   = module.eks.cluster_endpoint
+#     token                  = data.aws_eks_cluster_auth.default.token
+#     cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
+#   }
+# }
 
 // All GCP clusters
 resource "akp_cluster" "gcp_clusters" {
