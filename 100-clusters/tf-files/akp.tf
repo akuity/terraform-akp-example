@@ -1,9 +1,9 @@
 locals {
   example_layout = {
     gcp = {
-      dev   = 30
-      stage = 30
-      prod  = 40
+      dev   = 1
+      stage = 1
+      prod  = 1
     }
     aws = {
       dev   = 0
@@ -135,7 +135,7 @@ resource "akp_cluster" "gcp_clusters" {
   size             = "small"
   instance_id      = akp_instance.example.id
   labels           = {
-    # env = each.value.env
+    env = each.value.env
     cloud = "gcp"
   }
   annotations      = {
