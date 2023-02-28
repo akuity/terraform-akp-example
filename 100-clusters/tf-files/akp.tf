@@ -1,9 +1,9 @@
 locals {
   example_layout = {
     gcp = {
-      dev   = 1
-      stage = 1
-      prod  = 1
+      dev   = 10
+      stage = 10
+      prod  = 10
     }
     aws = {
       dev   = 0
