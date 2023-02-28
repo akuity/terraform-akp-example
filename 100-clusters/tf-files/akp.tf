@@ -135,7 +135,7 @@ resource "akp_cluster" "gcp_clusters" {
   size             = "small"
   instance_id      = akp_instance.example.id
   labels           = {
-    env = each.value.env
+    # env = each.value.env
     cloud = "gcp"
   }
   annotations      = {
