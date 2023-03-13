@@ -1,9 +1,9 @@
 locals {
   example_layout = {
     gcp = {
-      dev   = 1
-      stage = 1
-      prod  = 1
+      dev   = 0
+      stage = 0
+      prod  = 0
     }
     aws = {
       dev   = 0
@@ -127,23 +127,23 @@ resource "akp_instance" "example" {
 # }
 
 // All GCP clusters
-resource "akp_cluster" "gcp_clusters" {
-  for_each         = local.gcp_clusters
-  name             = each.key
-  namespace        = each.value.namespace
-  namespace_scoped = true
-  size             = "small"
-  instance_id      = akp_instance.example.id
-  labels           = {
-    env = each.value.env
-    cloud = "gcp"
-  }
-  annotations      = {
-    managed-namespace = each.value.namespace
-  }
-  kube_config      = {
-    host                   = "https://${module.gke.endpoint}"
-    token                  = data.google_client_config.default.access_token
-    cluster_ca_certificate = base64decode(module.gke.ca_certificate)
-  }
-}
+# resource "akp_cluster" "gcp_clusters" {
+#   for_each         = local.gcp_clusters
+#   name             = each.key
+#   namespace        = each.value.namespace
+#   namespace_scoped = true
+#   size             = "small"
+#   instance_id      = akp_instance.example.id
+#   labels           = {
+#     env = each.value.env
+#     cloud = "gcp"
+#   }
+#   annotations      = {
+#     managed-namespace = each.value.namespace
+#   }
+#   # kube_config      = {
+#   #   host                   = "https://${module.gke.endpoint}"
+#   #   token                  = data.google_client_config.default.access_token
+#   #   cluster_ca_certificate = base64decode(module.gke.ca_certificate)
+#   # }
+# }

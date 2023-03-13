@@ -79,4 +79,4 @@ Argo CD Web UI is available on https://100-clusters-example.cd.akuity.cloud
 
 -------------
 
-All examples are tested with akp provider version `0.3.1` 
+All examples are tested with akp provider version `0.4.1` 
